@@ -3,7 +3,7 @@ import p5 from "p5";
 class Bird {
   private static readonly X_POSITION = 64;
   private static readonly SIZE = 12;
-  private static readonly GRAVITY = 0.8;
+  private static readonly GRAVITY = 0.7;
   private static readonly LIFT = -12;
 
   private readonly _x: number;
@@ -29,8 +29,8 @@ class Bird {
     if (!this._alive) {
       return;
     }
-    this.p.fill(255, 100);
-    this.p.stroke(255);
+    this.p.fill(255);
+    this.p.stroke(175);
     this.p.ellipse(this._x, this._y, this._size * 2, this._size * 2);
   }
 

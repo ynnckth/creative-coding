@@ -18,7 +18,7 @@ const sketch = (p: p5) => {
   };
 
   p.draw = () => {
-    p.background(0);
+    p.background(211, 211, 211);
     if (!bird.alive) {
       resetGame();
     }

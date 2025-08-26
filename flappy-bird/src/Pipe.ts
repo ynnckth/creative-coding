@@ -30,8 +30,8 @@ class Pipe {
   }
 
   show() {
-    this.p.stroke(255);
-    this.p.fill(200);
+    this.p.stroke(175);
+    this.p.fill(175);
     this.p.rect(this._x, 0, this.width, this._top);
     this.p.rect(this._x, this.p.height - this._bottom, this.width, this._bottom);
   }
