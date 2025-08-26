@@ -24,7 +24,6 @@ const sketch = (p: p5) => {
       if (pipes[i].hit(bird)) {
         console.log("HIT");
       }
-
       if (pipes[i].offscreen()) {
         pipes.splice(i, 1);
       }
