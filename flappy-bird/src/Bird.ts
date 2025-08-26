@@ -14,6 +14,7 @@ class Bird {
   private _y: number;
   private _alive = true;
   private velocity: number;
+  private _score = 0;
 
   constructor(private p: p5) {
     this._x = Bird.X_POSITION;
@@ -48,6 +49,10 @@ class Bird {
     this.velocity += this.lift;
   }
 
+  increaseScore() {
+    this._score++;
+  }
+
   die() {
     this._alive = false;
   }
@@ -64,16 +69,20 @@ class Bird {
     return this._y;
   }
 
+  set y(value: number) {
+    this._y = value;
+  }
+
+  get score(): number {
+    return this._score;
+  }
+
   get size(): number {
     return this._size;
   }
 
   get alive(): boolean {
     return this._alive;
-  }
-
-  set y(value: number) {
-    this._y = value;
   }
 }
 export default Bird;

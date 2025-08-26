@@ -19,6 +19,10 @@ const sketch = (p: p5) => {
 
   p.draw = () => {
     p.background(211, 211, 211);
+
+    p.fill(0);
+    p.text(`Score: ${bird.score}`, 10, 20);
+
     if (!bird.alive) {
       resetGame();
     }
@@ -31,6 +35,7 @@ const sketch = (p: p5) => {
       }
       if (pipes[i].isOffScreen()) {
         pipes.splice(i, 1);
+        bird.increaseScore();
       }
     }
     bird.update();
