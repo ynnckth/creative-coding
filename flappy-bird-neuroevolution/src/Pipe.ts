@@ -23,7 +23,7 @@ class Pipe {
   }
 
   hit(bird: Bird) {
-    if (bird.y - bird.size < this._top || bird.y + bird.size > this.p.height - this._bottom) {
+    if (bird.y - Bird.SIZE < this._top || bird.y + Bird.SIZE > this.p.height - this._bottom) {
       if (bird.x > this._x && bird.x < this._x + Pipe.WIDTH) {
         return true;
       }

@@ -1,15 +1,12 @@
 import p5 from "p5";
 
 class Bird {
+  static readonly SIZE = 12;
   private static readonly X_POSITION = 64;
-  private static readonly SIZE = 12;
   private static readonly GRAVITY = 0.7;
   private static readonly LIFT = -12;
 
   private readonly _x: number;
-  private readonly _size: number;
-  private readonly gravity: number;
-  private readonly lift: number;
 
   private _y: number;
   private _alive = true;
@@ -19,10 +16,6 @@ class Bird {
   constructor(private p: p5) {
     this._x = Bird.X_POSITION;
     this._y = p.height / 2;
-    this._size = Bird.SIZE;
-
-    this.gravity = Bird.GRAVITY;
-    this.lift = Bird.LIFT;
     this.velocity = 0;
   }
 
@@ -32,7 +25,7 @@ class Bird {
     }
     this.p.fill(255);
     this.p.stroke(175);
-    this.p.ellipse(this._x, this._y, this._size * 2, this._size * 2);
+    this.p.ellipse(this._x, this._y, Bird.SIZE * 2, Bird.SIZE * 2);
   }
 
   update() {
@@ -40,13 +33,13 @@ class Bird {
       this._alive = false;
     }
     if (this._alive) {
-      this.velocity += this.gravity;
+      this.velocity += Bird.GRAVITY;
       this._y += this.velocity;
     }
   }
 
   flap() {
-    this.velocity += this.lift;
+    this.velocity += Bird.LIFT;
   }
 
   increaseScore() {
@@ -69,16 +62,8 @@ class Bird {
     return this._y;
   }
 
-  set y(value: number) {
-    this._y = value;
-  }
-
   get score(): number {
     return this._score;
-  }
-
-  get size(): number {
-    return this._size;
   }
 
   get alive(): boolean {

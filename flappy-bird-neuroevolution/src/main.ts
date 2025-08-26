@@ -38,6 +38,7 @@ const sketch = (p: p5) => {
         bird.increaseScore();
       }
     }
+    bird.think(pipes);
     bird.update();
     bird.show();
 
