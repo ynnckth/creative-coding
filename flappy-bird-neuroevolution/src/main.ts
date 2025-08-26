@@ -45,13 +45,6 @@ const sketch = (p: p5) => {
       pipes.push(new Pipe(p));
     }
   };
-
-  p.keyPressed = (e) => {
-    let pressedKey = (e as KeyboardEvent).key;
-    if (pressedKey === " ") {
-      bird.flap();
-    }
-  };
 };
 
 new p5(sketch);
