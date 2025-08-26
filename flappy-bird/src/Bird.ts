@@ -7,12 +7,12 @@ class Bird {
   private static readonly LIFT = -12;
 
   private readonly _x: number;
-  private _y: number;
   private readonly _size: number;
-  private _alive = true;
-
   private readonly gravity: number;
   private readonly lift: number;
+
+  private _y: number;
+  private _alive = true;
   private velocity: number;
 
   constructor(private p: p5) {
@@ -34,10 +34,6 @@ class Bird {
     this.p.ellipse(this._x, this._y, this._size * 2, this._size * 2);
   }
 
-  jump() {
-    this.velocity += this.lift;
-  }
-
   update() {
     if (this.isOffScreen()) {
       this._alive = false;
@@ -46,6 +42,10 @@ class Bird {
       this.velocity += this.gravity;
       this._y += this.velocity;
     }
+  }
+
+  jump() {
+    this.velocity += this.lift;
   }
 
   die() {

@@ -29,7 +29,7 @@ const sketch = (p: p5) => {
       if (pipes[i].hit(bird)) {
         bird.die();
       }
-      if (pipes[i].offscreen()) {
+      if (pipes[i].isOffScreen()) {
         pipes.splice(i, 1);
       }
     }
