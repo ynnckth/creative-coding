@@ -7,28 +7,32 @@ let bird: Bird;
 let pipes: Pipe[] = [];
 
 const sketch = (p: p5) => {
+  const resetGame = () => {
+    bird = new Bird(p);
+    pipes = [];
+  };
+
   p.setup = () => {
     p.createCanvas(600, 400);
-
-    bird = new Bird(p);
-    pipes.push(new Pipe(p));
+    resetGame();
   };
 
   p.draw = () => {
     p.background(0);
-
+    if (!bird.alive) {
+      resetGame();
+    }
     for (let i = pipes.length - 1; i >= 0; i--) {
       pipes[i].show();
       pipes[i].update();
 
       if (pipes[i].hit(bird)) {
-        console.log("HIT");
+        bird.die();
       }
       if (pipes[i].offscreen()) {
         pipes.splice(i, 1);
       }
     }
-
     bird.update();
     bird.show();
 

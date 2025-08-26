@@ -9,6 +9,7 @@ class Bird {
   private readonly _x: number;
   private _y: number;
   private readonly _size: number;
+  private _alive = true;
 
   private readonly gravity: number;
   private readonly lift: number;
@@ -25,6 +26,9 @@ class Bird {
   }
 
   show() {
+    if (!this._alive) {
+      return;
+    }
     this.p.fill(255, 100);
     this.p.stroke(255);
     this.p.ellipse(this._x, this._y, this._size * 2, this._size * 2);
@@ -35,18 +39,21 @@ class Bird {
   }
 
   update() {
-    this.velocity += this.gravity;
-    this._y += this.velocity;
-
-    if (this.y > this.p.height) {
-      this.y = this.p.height;
-      this.velocity = 0;
+    if (this.isOffScreen()) {
+      this._alive = false;
     }
-
-    if (this.y < 0) {
-      this.y = 0;
-      this.velocity = 0;
+    if (this._alive) {
+      this.velocity += this.gravity;
+      this._y += this.velocity;
     }
+  }
+
+  die() {
+    this._alive = false;
+  }
+
+  private isOffScreen(): boolean {
+    return this._y > this.p.height || this._y < 0;
   }
 
   get x(): number {
@@ -59,6 +66,10 @@ class Bird {
 
   get size(): number {
     return this._size;
+  }
+
+  get alive(): boolean {
+    return this._alive;
   }
 
   set y(value: number) {
