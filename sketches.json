@@ -16,5 +16,11 @@
     "title": "Contours",
     "description": "Topographic elevation contours in 3D using Marching Squares algorithm",
     "thumbnail": "thumbnails/contours.png"
+  },
+  {
+    "id": "tree",
+    "title": "Recursive Tree",
+    "description": "Randomly generated recursive tree",
+    "thumbnail": "thumbnails/tree.png"
   }
 ]
