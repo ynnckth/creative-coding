@@ -38,8 +38,9 @@ jobs:
 
       - name: Copy Landing Page
         run: |
-          cp landing-page.html dist/index.html
-          cp sketches.json dist/sketches.json
+          cp _landing-page/index.html dist/index.html
+          cp _landing-pagesketches.json dist/sketches.json
+          cp -r _landing-page/thumbnails dist/thumbnails
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
