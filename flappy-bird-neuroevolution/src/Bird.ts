@@ -11,6 +11,7 @@ class Bird {
   private static readonly NO_INPUT_NODES = 5; // y position, y velocity, x location of closest pipe, y location of top pipe, y location of bottom pipe
   private static readonly NO_HIDDEN_NODES = 8; // Arbitrarily chosen
   private static readonly NO_OUTPUT_NODES = 1; // Single output for flap decision (> 0.5 -> flap)
+  private static readonly MUTATION_RATE = 0.1;
 
   private readonly _x: number;
 
@@ -69,8 +70,11 @@ class Bird {
     }
   }
 
+  /**
+   * Mutate the bird's brain using random Gaussian distribution around 0
+   */
   mutate() {
-    this._brain.mutate(0.1, this.p);
+    this._brain.mutate(Bird.MUTATION_RATE, this.p);
   }
 
   isOffScreen(): boolean {
