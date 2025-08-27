@@ -6,7 +6,7 @@ class Bird {
   static readonly SIZE = 12;
   private static readonly X_POSITION = 64;
   private static readonly GRAVITY = 0.7;
-  private static readonly LIFT = -12;
+  private static readonly LIFT = -16;
 
   private static readonly NO_INPUT_NODES = 5; // y position, y velocity, x location of closest pipe, y location of top pipe, y location of bottom pipe
   private static readonly NO_HIDDEN_NODES = 8; // Arbitrarily chosen
@@ -54,7 +54,7 @@ class Bird {
   /**
    * Decide whether to flap or not based on the neural network's output
    */
-  flapOrDont(pipes: Pipe[]) {
+  process(pipes: Pipe[]) {
     const closestPipe = this.findClosestPipe(pipes);
 
     // Normalized inputs for the neural network
@@ -78,6 +78,9 @@ class Bird {
     this._brain.mutate(Bird.MUTATION_RATE, this.p);
   }
 
+  /**
+   * True when the bird has flown off the screen (hit the ground or flown too high)
+   */
   isOffScreen(): boolean {
     return this._y > this.p.height || this._y < 0;
   }

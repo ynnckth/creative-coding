@@ -5,4 +5,5 @@ export class NeuralNetwork {
   predict(inputs: number[]): number[];
   copy(): NeuralNetwork;
   mutate(rate: number, p: p5): void;
+  serialize(): string;
 }
