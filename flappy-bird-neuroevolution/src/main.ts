@@ -13,6 +13,21 @@ const sketch = (p: p5) => {
   let pipes: Pipe[] = [];
   let counter = 0;
   let speedUpSlider: p5.Element;
+  let currentGeneration = 0;
+  let highScore = 0;
+
+  const getCurrentHighScore = () => {
+    let currentHighScore = 0;
+    for (let bird of aliveBirds) {
+      if (bird.score > currentHighScore) {
+        currentHighScore = bird.score;
+      }
+    }
+    if (currentHighScore > highScore) {
+      highScore = currentHighScore;
+    }
+    return currentHighScore;
+  };
 
   p.setup = () => {
     p.createCanvas(600, 400);
@@ -53,6 +68,7 @@ const sketch = (p: p5) => {
         aliveBirds = evolution.createNextGeneration(POPULATION_SIZE, allBirds);
         pipes = [];
         allBirds = [];
+        currentGeneration++;
       }
     }
 
@@ -64,6 +80,11 @@ const sketch = (p: p5) => {
     for (let pipe of pipes) {
       pipe.show();
     }
+    p.fill(0);
+    p.strokeWeight(0.5);
+    p.text(`Generation: ${currentGeneration}`, 10, 20);
+    p.text(`Generation high score: ${getCurrentHighScore()}`, 10, 40);
+    p.text(`All time high score: ${highScore}`, 10, 60);
   };
 };
 
