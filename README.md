@@ -1,6 +1,15 @@
 # Creative Coding
 A collection of creative coding projects and experiments.
 
+## Sketches
+
+Flappy Bird (interactive game using space bar) 
+> https://ynnckth.github.io/creative-coding/flappy-bird
+ 
+Flappy Bird Neuro-Evolution (learning to play the game)
+> https://ynnckth.github.io/creative-coding/flappy-bird-neuroevolution
+
+
 ## Ideas
 
 - [ ] Deploy to Github pages with links to the running sketches (build and deploy sketches)
