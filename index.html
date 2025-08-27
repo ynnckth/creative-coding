@@ -4,18 +4,68 @@
   <meta charset="utf-8" />
   <title>Creative Coding</title>
   <style>
-      body { font-family: sans-serif; padding: 2rem; background: #f5f5f5 }
-      h1 { text-align: center; }
-      .grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-      .card { background: white; border-radius: 6px; padding: 1rem; width: 220px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-      .card img { width: 100%; border-radius: 4px; }
-      .card h3 { margin: 0.5rem 0 0.2rem; }
-      .card p { font-size: 0.9rem; color: #555; text-decoration: none }
+      body {
+          font-family: sans-serif;
+          padding: 2rem;
+          background: #37353E;
+          color: #e0e0e0;
+          margin: 0;
+      }
+
+      h1 {
+          text-align: center;
+          color: #ffffff;
+      }
+
+      .grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          justify-content: center;
+      }
+
+      .card {
+          background: #44444E;
+          border-radius: 8px;
+          padding: 1rem;
+          width: 220px;
+          text-align: center;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+          transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+      }
+
+      .card img {
+          width: 100%;
+          border-radius: 6px;
+          border: 1px solid #444;
+      }
+
+      .card h3 {
+          margin: 0.5rem 0 0.2rem;
+          color: #ffffff;
+      }
+
+      .card p {
+          font-size: 0.9rem;
+          color: #cccccc;
+          margin: 0;
+      }
+
+      a {
+          text-decoration: none;
+          color: inherit;
+      }
   </style>
 </head>
 <body>
 <h1>Creative Coding Sketches</h1>
 <div class="grid" id="sketches"></div>
+
 <script>
   fetch('sketches.json')
     .then(res => res.json())
@@ -29,9 +79,9 @@
             <h3>${sketch.title}</h3>
             <p>${sketch.description}</p>
           `;
-          container.appendChild(card);
-        });
+        container.appendChild(card);
       });
-  </script>
+    });
+</script>
 </body>
 </html>
