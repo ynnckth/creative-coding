@@ -23,7 +23,7 @@ jobs:
 
       - name: Copy Landing Page
         run: |
-          cp landing-template.html dist/index.html
+          cp landing-page.html dist/index.html
           cp sketches.json dist/sketches.json
 
       - name: Install and Build Sketches
