@@ -1,0 +1,45 @@
+name: Deploy Sketches to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write  # needed for deploying to gh-pages branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install and Build Sketches
+        run: |
+          mkdir -p dist
+          for d in */ ; do
+            if [ -f "$d/package.json" ]; then
+              echo "Building $d..."
+              cd $d
+              npm ci
+              npm run build
+              cd ..
+              mkdir -p dist/$d
+              cp -r $d/dist/* dist/$d
+            fi
+          done
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
