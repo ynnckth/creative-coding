@@ -1,17 +1,5 @@
 [
   {
-    "id": "flappy-bird",
-    "title": "Flappy Bird",
-    "description": "A simple and interactive Flappy Bird game clone (use the space bar to flap)",
-    "thumbnail": "thumbnails/flappy-bird.png"
-  },
-  {
-    "id": "flappy-bird-neuroevolution",
-    "title": "Flappy Bird Neuroevolution",
-    "description": "Learning to play Flappy Bird with using neural networks and genetic algorithms",
-    "thumbnail": "thumbnails/flappy-bird-neuroevolution.png"
-  },
-  {
     "id": "contours",
     "title": "Contours",
     "description": "Topographic elevation contours in 3D using Marching Squares algorithm",
@@ -28,5 +16,23 @@
     "title": "TV Noise",
     "description": "TV noise effect using Perlin noise",
     "thumbnail": "thumbnails/tv-noise.png"
+  },
+  {
+    "id": "flow-field",
+    "title": "Flow Field",
+    "description": "Random flow field",
+    "thumbnail": "thumbnails/flow-field.png"
+  },
+  {
+    "id": "flappy-bird",
+    "title": "Flappy Bird",
+    "description": "A simple and interactive Flappy Bird game clone (use the space bar to flap)",
+    "thumbnail": "thumbnails/flappy-bird.png"
+  },
+  {
+    "id": "flappy-bird-neuroevolution",
+    "title": "Flappy Bird Neuroevolution",
+    "description": "Learning to play Flappy Bird with using neural networks and genetic algorithms",
+    "thumbnail": "thumbnails/flappy-bird-neuroevolution.png"
   }
 ]
