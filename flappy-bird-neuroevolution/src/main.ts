@@ -2,11 +2,12 @@ import p5 from "p5";
 
 import Bird from "./Bird.ts";
 import Pipe from "./Pipe.ts";
-import { nextGeneration } from "./Genetics.ts";
+import Evolution from "./Evolution.ts";
 
 const sketch = (p: p5) => {
   const POPULATION_SIZE = 500;
 
+  const evolution = new Evolution(p);
   let aliveBirds: Bird[] = [];
   let allBirds: Bird[] = []; // Backup of all birds of the current generation
   let pipes: Pipe[] = [];
@@ -46,7 +47,7 @@ const sketch = (p: p5) => {
 
     if (aliveBirds.length === 0) {
       counter = 0;
-      aliveBirds = nextGeneration(p, POPULATION_SIZE, allBirds);
+      aliveBirds = evolution.createNextGeneration(POPULATION_SIZE, allBirds);
       pipes = [];
       allBirds = [];
     }
