@@ -1,6 +1,6 @@
 import p5 from "p5";
 import { NeuralNetwork } from "./lib/nn";
-import type Pipe from "./Pipe.ts";
+import Pipe from "./Pipe.ts";
 
 class Bird {
   static readonly SIZE = 12;
@@ -8,75 +8,77 @@ class Bird {
   private static readonly GRAVITY = 0.7;
   private static readonly LIFT = -12;
 
-  private static readonly NO_INPUT_NODES = 4; // y position, y velocity, x location of closest pipe, y location of top pipe, y location of bottom pipe
+  private static readonly NO_INPUT_NODES = 5; // y position, y velocity, x location of closest pipe, y location of top pipe, y location of bottom pipe
   private static readonly NO_HIDDEN_NODES = 8; // Arbitrarily chosen
-  private static readonly NO_OUTPUT_NODES = 1; // Single output for flap decision
+  private static readonly NO_OUTPUT_NODES = 1; // Single output for flap decision (> 0.5 -> flap)
 
   private readonly _x: number;
 
   private _y: number;
-  private _alive = true;
   private velocity: number;
   private _score = 0;
+  // Normalized score between 0 and 1 representing probability to get picked for the next generation
+  private _fitness = 0;
 
-  private readonly brain: NeuralNetwork;
+  private readonly _brain: NeuralNetwork;
 
-  constructor(private p: p5) {
+  constructor(
+    private p: p5,
+    brain?: NeuralNetwork,
+  ) {
     this._x = Bird.X_POSITION;
     this._y = p.height / 2;
 
     this.velocity = 0;
 
-    this.brain = new NeuralNetwork(Bird.NO_INPUT_NODES, Bird.NO_HIDDEN_NODES, Bird.NO_OUTPUT_NODES);
+    if (brain) {
+      this._brain = brain.copy();
+    } else {
+      this._brain = new NeuralNetwork(Bird.NO_INPUT_NODES, Bird.NO_HIDDEN_NODES, Bird.NO_OUTPUT_NODES);
+    }
   }
 
   show() {
-    if (!this._alive) {
-      return;
-    }
-    this.p.fill(255);
+    this.p.fill(255, 150);
     this.p.stroke(175);
     this.p.ellipse(this._x, this._y, Bird.SIZE * 2, Bird.SIZE * 2);
   }
 
   update() {
-    if (this.isOffScreen()) {
-      this._alive = false;
-    }
-    if (this._alive) {
-      this.velocity += Bird.GRAVITY;
-      this._y += this.velocity;
-    }
+    this._score++;
+    this.velocity += Bird.GRAVITY;
+    this._y += this.velocity;
   }
 
   /**
    * Decide whether to flap or not based on the neural network's output
    */
-  think(pipes: Pipe[]) {
+  flapOrDont(pipes: Pipe[]) {
     const closestPipe = this.findClosestPipe(pipes);
 
-    let inputs = [];
+    const inputs = [];
     inputs[0] = this.y / this.p.height;
-    inputs[1] = closestPipe.top;
-    inputs[2] = closestPipe.bottom;
-    inputs[3] = closestPipe.x;
+    inputs[1] = this.velocity / 10;
+    inputs[2] = closestPipe.top / this.p.height;
+    inputs[3] = closestPipe.bottom / this.p.height;
+    inputs[4] = closestPipe.x / this.p.width;
 
-    let output = this.brain.predict(inputs);
+    const output = this._brain.predict(inputs);
     if (output[0] > 0.5) {
       this.flap();
     }
   }
 
+  mutate() {
+    this._brain.mutate(0.1, this.p);
+  }
+
+  isOffScreen(): boolean {
+    return this._y > this.p.height || this._y < 0;
+  }
+
   private flap() {
     this.velocity += Bird.LIFT;
-  }
-
-  increaseScore() {
-    this._score++;
-  }
-
-  die() {
-    this._alive = false;
   }
 
   private findClosestPipe(pipes: Pipe[]) {
@@ -92,10 +94,6 @@ class Bird {
     return closestPipe;
   }
 
-  private isOffScreen(): boolean {
-    return this._y > this.p.height || this._y < 0;
-  }
-
   get x(): number {
     return this._x;
   }
@@ -108,8 +106,16 @@ class Bird {
     return this._score;
   }
 
-  get alive(): boolean {
-    return this._alive;
+  set fitness(value: number) {
+    this._fitness = value;
+  }
+
+  get fitness(): number {
+    return this._fitness;
+  }
+
+  get brain(): NeuralNetwork {
+    return this._brain;
   }
 }
 export default Bird;

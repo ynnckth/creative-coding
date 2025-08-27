@@ -5,7 +5,7 @@ import Bird from "./Bird.ts";
  * A pipe obstacle consisting of a top and bottom element with a gap in between
  */
 class Pipe {
-  private static readonly SPACING = 125;
+  private static readonly SPACING = 100;
   private static readonly WIDTH = 80;
   private static readonly SPEED = 6;
 
@@ -32,7 +32,7 @@ class Pipe {
   }
 
   show() {
-    this.p.stroke(175);
+    this.p.stroke(100);
     this.p.fill(175);
     this.p.rect(this._x, 0, Pipe.WIDTH, this._top);
     this.p.rect(this._x, this.p.height - this._bottom, Pipe.WIDTH, this._bottom);

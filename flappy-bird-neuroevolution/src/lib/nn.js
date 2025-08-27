@@ -18,13 +18,9 @@ let tanh = new ActivationFunction(
 );
 
 export class NeuralNetwork {
-  /*
-   * if first argument is a NeuralNetwork the constructor clones it
-   * USAGE: cloned_nn = new NeuralNetwork(to_clone_nn);
-   */
-  constructor(in_nodes, hid_nodes, out_nodes) {
-    if (in_nodes instanceof NeuralNetwork) {
-      let a = in_nodes;
+  // TODO: document what a, b, c are
+  constructor(a, b, c) {
+    if (a instanceof NeuralNetwork) {
       this.input_nodes = a.input_nodes;
       this.hidden_nodes = a.hidden_nodes;
       this.output_nodes = a.output_nodes;
@@ -35,9 +31,9 @@ export class NeuralNetwork {
       this.bias_h = a.bias_h.copy();
       this.bias_o = a.bias_o.copy();
     } else {
-      this.input_nodes = in_nodes;
-      this.hidden_nodes = hid_nodes;
-      this.output_nodes = out_nodes;
+      this.input_nodes = a;
+      this.hidden_nodes = b;
+      this.output_nodes = c;
 
       this.weights_ih = new Matrix(this.hidden_nodes, this.input_nodes);
       this.weights_ho = new Matrix(this.output_nodes, this.hidden_nodes);
@@ -159,12 +155,19 @@ export class NeuralNetwork {
     return new NeuralNetwork(this);
   }
 
-  // Accept an arbitrary function for mutation
-  mutate(func) {
-    this.weights_ih.map(func);
-    this.weights_ho.map(func);
-    this.bias_h.map(func);
-    this.bias_o.map(func);
+  mutate(rate, p) {
+    function mutate(val, p) {
+      if (Math.random() < rate) {
+        // return 2 * Math.random() - 1;
+        return val + p.randomGaussian(0, 0.1);
+      } else {
+        return val;
+      }
+    }
+    this.weights_ih.map((val) => mutate(val, p));
+    this.weights_ho.map((val) => mutate(val, p));
+    this.bias_h.map((val) => mutate(val, p));
+    this.bias_o.map((val) => mutate(val, p));
   }
 }
 
@@ -296,4 +299,8 @@ class Matrix {
     matrix.data = data.data;
     return matrix;
   }
+}
+
+if (typeof module !== "undefined") {
+  module.exports = Matrix;
 }
