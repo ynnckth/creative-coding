@@ -24,7 +24,7 @@ jobs:
       - name: Install and Build Sketches
         run: |
           mkdir -p dist
-          for d in */ ; do
+          for d in sketches/*/ ; do
             if [ -f "$d/package.json" ]; then
               echo "Building $d..."
               cd $d
@@ -38,9 +38,9 @@ jobs:
 
       - name: Copy Landing Page
         run: |
-          cp _landing-page/index.html dist/index.html
-          cp _landing-page/sketches.json dist/sketches.json
-          cp -r _landing-page/thumbnails dist/thumbnails
+          cp landing-page/index.html dist/index.html
+          cp landing-page/sketches.json dist/sketches.json
+          cp -r landing-page/thumbnails dist/thumbnails
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
