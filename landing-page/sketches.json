@@ -22,5 +22,11 @@
     "title": "Recursive Tree",
     "description": "Randomly generated recursive tree",
     "thumbnail": "thumbnails/tree.png"
+  },
+  {
+    "id": "tv-noise",
+    "title": "TV Noise",
+    "description": "TV noise effect using Perlin noise",
+    "thumbnail": "thumbnails/tv-noise.png"
   }
 ]
