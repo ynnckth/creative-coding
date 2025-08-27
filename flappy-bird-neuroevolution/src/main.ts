@@ -3,6 +3,7 @@ import p5 from "p5";
 import Bird from "./Bird.ts";
 import Pipe from "./Pipe.ts";
 import Evolution from "./Evolution.ts";
+import { NeuralNetwork } from "./lib/nn";
 
 const sketch = (p: p5) => {
   const POPULATION_SIZE = 500;
@@ -17,6 +18,7 @@ const sketch = (p: p5) => {
 
   let speedUpSlider: p5.Element;
   let exportBestBrainButton: p5.Element;
+  let importedBird: Bird | undefined = undefined;
 
   const getCurrentHighScore = () => {
     let currentHighScore = 0;
@@ -43,17 +45,24 @@ const sketch = (p: p5) => {
 
   p.setup = () => {
     p.createCanvas(600, 400);
-    for (let i = 0; i < POPULATION_SIZE; i++) {
-      activeBirds[i] = new Bird(p);
-    }
-    pipes = [];
-
     speedUpSlider = p.createSlider(1, 100, 1);
     p.createP();
     exportBestBrainButton = p.createButton("Export best brain");
     exportBestBrainButton.mouseClicked(() => {
       p.save(findCurrentBestBird().brain.serialize(), "best_bird.json");
     });
+    p.createP();
+    p.createFileInput((file) => {
+      importedBird = new Bird(p, NeuralNetwork.deserialize(file.data as string));
+      activeBirds = [importedBird];
+    });
+
+    if (!importedBird) {
+      for (let i = 0; i < POPULATION_SIZE; i++) {
+        activeBirds[i] = new Bird(p);
+      }
+    }
+    pipes = [];
   };
 
   p.draw = () => {

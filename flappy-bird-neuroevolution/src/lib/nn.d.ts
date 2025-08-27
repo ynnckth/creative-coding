@@ -6,4 +6,5 @@ export class NeuralNetwork {
   copy(): NeuralNetwork;
   mutate(rate: number, p: p5): void;
   serialize(): string;
+  static deserialize(jsonSerialized: string): NeuralNetwork;
 }
