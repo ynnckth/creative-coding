@@ -2,11 +2,13 @@
   {
     "id": "flappy-bird",
     "title": "Flappy Bird",
-    "description": "A simple and interactive Flappy Bird game clone (use the space bar to flap)"
+    "description": "A simple and interactive Flappy Bird game clone (use the space bar to flap)",
+    "thumbnail": "thumbnails/flappy-bird.png"
   },
   {
     "id": "flappy-bird-neuroevolution",
     "title": "Flappy Bird Neuroevolution",
-    "description": "Learning to play Flappy Bird with using neural networks and genetic algorithms"
+    "description": "Learning to play Flappy Bird with using neural networks and genetic algorithms",
+    "thumbnail": "thumbnails/flappy-bird-neuroevolution.png"
   }
 ]
