@@ -1,4 +1,4 @@
-# Flow Field
+# Raycasting
 
 ## Setup
 This project was created using the `vanilla-ts` template of vite using the following command:
@@ -10,3 +10,8 @@ Install the dependencies:
 ```bash
 npm install
 ```
+
+## Ideas
+
+- [ ] Maze like map
+- [ ] Particle shouldn't be able to go through walls

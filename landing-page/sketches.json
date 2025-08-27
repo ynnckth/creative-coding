@@ -34,5 +34,11 @@
     "title": "Flappy Bird Neuroevolution",
     "description": "Learning to play Flappy Bird with using neural networks and genetic algorithms",
     "thumbnail": "thumbnails/flappy-bird-neuroevolution.png"
+  },
+  {
+    "id": "raycasting",
+    "title": "Raycasting",
+    "description": "",
+    "thumbnail": "thumbnails/raycasting.png"
   }
 ]

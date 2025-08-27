@@ -1,4 +1,4 @@
-# Contours
+# TV Noise
 
 ## Setup
 This project was created using the `vanilla-ts` template of vite using the following command:
