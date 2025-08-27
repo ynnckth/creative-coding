@@ -30,9 +30,9 @@ jobs:
               cd $d
               npm ci
               npm run build
-              cd ..
-              mkdir -p dist/$d
-              cp -r $d/dist/* dist/$d
+              cd ../..
+              mkdir -p dist/$(basename $d)
+              cp -r $d/dist/* dist/$(basename $d)/
             fi
           done
 
