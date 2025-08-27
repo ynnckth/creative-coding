@@ -83,8 +83,9 @@ const sketch = (p: p5) => {
     p.fill(0);
     p.strokeWeight(0.5);
     p.text(`Generation: ${currentGeneration}`, 10, 20);
-    p.text(`Generation high score: ${getCurrentHighScore()}`, 10, 40);
-    p.text(`All time high score: ${highScore}`, 10, 60);
+    p.text(`No of birds: ${aliveBirds.length}`, 10, 40);
+    p.text(`Generation high score: ${getCurrentHighScore()}`, 10, 60);
+    p.text(`All time high score: ${highScore}`, 10, 80);
   };
 };
 

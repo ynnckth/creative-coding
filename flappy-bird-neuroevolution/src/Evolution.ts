@@ -1,6 +1,9 @@
 import p5 from "p5";
 import Bird from "./Bird.ts";
 
+/**
+ * Genetic algorithm to create the next generation of birds
+ */
 class Evolution {
   constructor(private p: p5) {}
 

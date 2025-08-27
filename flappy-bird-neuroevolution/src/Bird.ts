@@ -57,6 +57,7 @@ class Bird {
   flapOrDont(pipes: Pipe[]) {
     const closestPipe = this.findClosestPipe(pipes);
 
+    // Normalized inputs for the neural network
     const inputs = [];
     inputs[0] = this.y / this.p.height;
     inputs[1] = this.velocity / 10;
@@ -89,7 +90,7 @@ class Bird {
     let closestPipe = pipes[0];
     let closestPipeDistance = Infinity;
     for (let i = 0; i < pipes.length; i++) {
-      let distance = pipes[i].x - this.x;
+      let distance = pipes[i].x + Pipe.WIDTH - this.x;
       if (distance < closestPipeDistance && distance > 0) {
         closestPipeDistance = distance;
         closestPipe = pipes[i];
