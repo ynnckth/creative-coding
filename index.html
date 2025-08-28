@@ -1,62 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Creative Coding</title>
   <style>
       body {
           font-family: sans-serif;
           padding: 2rem;
-          background: #37353E;
+          background: #151B23;
           color: #e0e0e0;
           margin: 0;
       }
-
       h1 {
-          text-align: center;
-          color: #ffffff;
+          color: #d1d7e0;
+          margin-bottom: 1rem;
+      }
+      h2 {
+          color: #d1d7e0;
+          font-size: 1.2rem;
+          font-weight: lighter;
+          margin-bottom: 1rem;
+      }
+      p {
+          color: #9198a1;
+          font-size: 0.9rem;
           margin-bottom: 3rem;
       }
-
       .grid {
           display: flex;
           flex-wrap: wrap;
           gap: 1rem;
-          justify-content: center;
+          justify-content: left;
       }
-
       .card {
-          background: #44444E;
-          border-radius: 8px;
+          background: #2A313C;
           padding: 1rem;
-          width: 220px;
-          text-align: center;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-          transition: transform 0.2s, box-shadow 0.2s;
+          width: 450px;
+          height: 400px;
       }
-
       .card:hover {
-          transform: translateY(-3px);
           box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
       }
-
       .card img {
           width: 100%;
-          border-radius: 6px;
-          border: 1px solid #444;
+          height: 300px;
+          object-fit: cover;
       }
-
       .card h3 {
-          margin: 0.5rem 0 0.2rem;
-          color: #ffffff;
+          margin: 0.5rem 0 0.75rem;
+          color: #d1d7e0;
       }
-
       .card p {
           font-size: 0.9rem;
-          color: #cccccc;
+          color: #9198a1;
           margin: 0;
       }
-
       a {
           text-decoration: none;
           color: inherit;
@@ -64,7 +64,10 @@
   </style>
 </head>
 <body>
-<h1>Creative Coding Sketches</h1>
+<h1>Creative Coding</h1>
+<h2>A collection of sketches implemented using P5 and Processing</h2>
+<p>The code can be found <a href="https://github.com/ynnckth/creative-coding">[here]</a></p>
+
 <div class="grid" id="sketches"></div>
 
 <script>
@@ -73,14 +76,17 @@
     .then(data => {
       const container = document.getElementById('sketches');
       data.forEach(sketch => {
+        const link = document.createElement('a');
+        link.setAttribute('href', `./${sketch.id}/`);
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-            <a href="./${sketch.id}/"><img src="./${sketch.thumbnail}" alt="${sketch.title}"/></a>
+            <img src="./${sketch.thumbnail}" alt="${sketch.title}"/>
             <h3>${sketch.title}</h3>
             <p>${sketch.description}</p>
           `;
-        container.appendChild(card);
+        link.appendChild(card);
+        container.appendChild(link);
       });
     });
 </script>
