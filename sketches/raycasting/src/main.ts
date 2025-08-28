@@ -3,7 +3,7 @@ import Wall from "./Wall.ts";
 import Particle from "./Particle.ts";
 
 const sketch = (p: p5) => {
-  const ROTATION_SPEED = 0.02;
+  const ROTATION_ANGLE = 0.02;
   const MOVING_SPEED = 1.5;
 
   let walls: Wall[] = [];
@@ -35,9 +35,9 @@ const sketch = (p: p5) => {
 
   p.draw = () => {
     if (p.keyIsDown(p.LEFT_ARROW)) {
-      particle.rotate(-ROTATION_SPEED);
+      particle.rotate(-ROTATION_ANGLE);
     } else if (p.keyIsDown(p.RIGHT_ARROW)) {
-      particle.rotate(ROTATION_SPEED);
+      particle.rotate(ROTATION_ANGLE);
     } else if (p.keyIsDown(p.UP_ARROW)) {
       if (!particle.hitWall(walls)) {
         particle.move(MOVING_SPEED);
