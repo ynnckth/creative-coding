@@ -14,4 +14,3 @@ npm install
 ## Ideas
 
 - [ ] Maze like map
-- [ ] Particle shouldn't be able to go through walls

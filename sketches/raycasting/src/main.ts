@@ -3,6 +3,9 @@ import Wall from "./Wall.ts";
 import Particle from "./Particle.ts";
 
 const sketch = (p: p5) => {
+  const ROTATION_SPEED = 0.02;
+  const MOVING_SPEED = 1.5;
+
   let walls: Wall[] = [];
   let particle: Particle;
 
@@ -32,13 +35,17 @@ const sketch = (p: p5) => {
 
   p.draw = () => {
     if (p.keyIsDown(p.LEFT_ARROW)) {
-      particle.rotate(-0.01);
+      particle.rotate(-ROTATION_SPEED);
     } else if (p.keyIsDown(p.RIGHT_ARROW)) {
-      particle.rotate(0.01);
+      particle.rotate(ROTATION_SPEED);
     } else if (p.keyIsDown(p.UP_ARROW)) {
-      particle.move(1);
+      if (!particle.hitWall(walls)) {
+        particle.move(MOVING_SPEED);
+      }
     } else if (p.keyIsDown(p.DOWN_ARROW)) {
-      particle.move(-1);
+      if (!particle.hitWall(walls)) {
+        particle.move(-MOVING_SPEED);
+      }
     }
 
     p.background(0);
@@ -48,6 +55,8 @@ const sketch = (p: p5) => {
     particle.show();
 
     const scene = particle.look(walls);
+
+    // Draw the 3D scene on the right half of the canvas
     const w = sceneW / scene.length;
     p.push();
     p.translate(sceneW, 0);

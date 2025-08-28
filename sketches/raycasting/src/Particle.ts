@@ -43,6 +43,21 @@ class Particle {
     this.pos.add(vel);
   }
 
+  hitWall(walls: Wall[]) {
+    for (let wall of walls) {
+      for (let ray of this.rays) {
+        const pt = ray.cast(wall);
+        if (pt) {
+          const d = p5.Vector.dist(this.pos, pt);
+          if (d < 2) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
   look(walls: Wall[]) {
     const scene = [];
     for (let i = 0; i < this.rays.length; i++) {
