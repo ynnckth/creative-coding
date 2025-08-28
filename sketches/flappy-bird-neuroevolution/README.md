@@ -5,6 +5,13 @@ Learning to play Flappy Bird using neural networks, reinforcement learning and g
 The agents are evaluated based on their performance (score) and the best performing agents are selected to create a new generation of agents using genetic algorithms (crossover and mutation).
 For simplicity, the game state is represented by manually extracted features (bird's y position, distance to next pipe, height of next pipe gap, etc.) instead of using raw pixel data.
 
+## Tags
+- #neuralnetworks
+- #geneticalgorithms
+- #machinelearning
+- #reinforcementlearning
+- #game
+
 ## Setup
 This project was created using the `vanilla-ts` template of vite using the following command:
 ```bash

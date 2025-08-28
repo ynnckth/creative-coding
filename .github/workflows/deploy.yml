@@ -39,6 +39,7 @@ jobs:
       - name: Copy Landing Page
         run: |
           cp landing-page/index.html dist/index.html
+          cp landing-page/favicon.png dist/favicon.png
           cp landing-page/sketches.json dist/sketches.json
           cp -r landing-page/thumbnails dist/thumbnails
 
