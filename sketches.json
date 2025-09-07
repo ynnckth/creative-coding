@@ -2,25 +2,25 @@
   {
     "id": "contours",
     "title": "Contours",
-    "description": "Topographic elevation contours in 3D using Marching Squares algorithm",
+    "description": "Generated topographic elevation contours in 3D using Perlin Noise and Marching Squares algorithm",
     "thumbnail": "thumbnails/contours.png"
   },
   {
     "id": "tree",
     "title": "Recursive Tree",
-    "description": "Randomly generated recursive tree",
+    "description": "Organic looking, randomly generated tree",
     "thumbnail": "thumbnails/tree.png"
   },
   {
     "id": "tv-noise",
     "title": "TV Noise",
-    "description": "TV noise effect using Perlin noise",
+    "description": "TV noise effect using Perlin Noise",
     "thumbnail": "thumbnails/tv-noise.png"
   },
   {
     "id": "flow-field",
     "title": "Flow Field",
-    "description": "Random flow field",
+    "description": "Random flow field using Perlin Noise",
     "thumbnail": "thumbnails/flow-field.png"
   },
   {
