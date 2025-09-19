@@ -95,7 +95,7 @@
     .then(data => {
       const container = document.getElementById('sketches');
       data.forEach(sketch => {
-      } const link = document.createElement('a');
+        const link = document.createElement('a');
         link.setAttribute('href', `./${sketch.id}/`);
         const card = document.createElement('div');
         card.className = 'card';
