@@ -6,6 +6,9 @@ class Track {
   private static readonly NOISE_INCREMENT = 0.005;
   private static readonly STEP = 2; // vertical spacing per frame (px)
 
+  // Number of points to cover the screen plus a small buffer
+  private readonly numInitialSegments;
+
   private xHistory: number[] = [];
   private yHistory: number[] = [];
   private leftWalls: Wall[] = [];
@@ -17,10 +20,10 @@ class Track {
   constructor(private p: p5) {
     const centerX = this.p.width / 2 - Track.WIDTH / 2;
     this.noiseOffset = centerX - Track.WIDTH;
-    // Number of points to cover the screen plus a small buffer
-    const numInitialSegments = Math.ceil(this.p.height / Track.STEP) + 10;
 
-    for (let i = numInitialSegments - 1; i >= 0; i--) {
+    this.numInitialSegments = Math.ceil(this.p.height / Track.STEP) + 10;
+
+    for (let i = this.numInitialSegments - 1; i >= 0; i--) {
       const y = i * Track.STEP; // y grows downward: i=0 -> head at y=0
       this.xHistory.push(centerX);
       this.yHistory.push(y);
@@ -82,6 +85,10 @@ class Track {
       this.xHistory.shift();
       this.yHistory.shift();
     }
+  }
+
+  getWalls(): Wall[] {
+    return [...this.leftWalls, ...this.rightWalls];
   }
 }
 export default Track;

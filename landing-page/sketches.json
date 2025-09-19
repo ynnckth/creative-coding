@@ -40,5 +40,11 @@
     "title": "Raycasting",
     "description": "Ray casting in 2d and 3d visualization. Use the arrow keys to move",
     "thumbnail": "thumbnails/raycasting.png"
+  },
+  {
+    "id": "flocking",
+    "title": "Flocking",
+    "description": "Flocking simulation using Craig Reynolds' Boids algorithm",
+    "thumbnail": "thumbnails/flocking.png"
   }
 ]

@@ -1,8 +1,8 @@
 import p5 from "p5";
-import Car from "./Car.ts";
+import Vehicle from "./Vehicle.ts";
 import Track from "./Track.ts";
 
-let car: Car;
+let car: Vehicle;
 let track: Track;
 
 const sketch = (p: p5) => {
@@ -11,7 +11,7 @@ const sketch = (p: p5) => {
 
   p.setup = () => {
     p.createCanvas(600, 400);
-    car = new Car(p);
+    car = new Vehicle(p);
     track = new Track(p);
   };
 
@@ -26,6 +26,7 @@ const sketch = (p: p5) => {
     track.update();
     track.show();
     car.update();
+    car.look(track.getWalls());
     car.show();
   };
 };
