@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "http-server -c-1 -p 3000 ./src"
+    "start": "http-server -c-1 -p 3000 ./src",
+    "build": "mkdir -p dist && cp -r src/* dist"
   },
   "keywords": [],
   "author": "",
